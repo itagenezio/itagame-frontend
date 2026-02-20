@@ -217,3 +217,31 @@
 .login-page {
   padding-top: 70px;
 }
+.register-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.register-link p {
+  color: #aaa;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.register-btn {
+  background: transparent;
+  border: 2px solid #a855f7;
+  color: #a855f7;
+  padding: 10px 30px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.register-btn:hover {
+  background: #a855f7;
+  color: white;
+}

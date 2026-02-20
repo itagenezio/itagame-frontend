@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import api from './services/api';
 import './LoginNew.css';
 
-const LoginNew = ({ onLoginSuccess }) => {
+const LoginNew = ({ onLoginSuccess, onNavigate }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -23,7 +23,7 @@ const LoginNew = ({ onLoginSuccess }) => {
       localStorage.setItem('user', JSON.stringify(response.data.user));
       onLoginSuccess();
     } catch {
-      setMessage('Erro no login');
+      setMessage('Erro no login. Verifique suas credenciais.');
     } finally {
       setLoading(false);
     }
@@ -39,18 +39,14 @@ const LoginNew = ({ onLoginSuccess }) => {
       localStorage.setItem('user', JSON.stringify(response.data.user));
       onLoginSuccess();
     } catch {
-      setMessage('Erro no login');
+      setMessage('Erro no login. Verifique suas credenciais.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div
-      className="login-page"
-      style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/login-bg.png)` }}
-    >
-
+    <div className="login-page">
       <div className="login-header">
         <span className="logo-icon">🎮</span>
         <h1 className="logo-text">ITAGAME</h1>
@@ -66,10 +62,10 @@ const LoginNew = ({ onLoginSuccess }) => {
             🎓 Aluno
           </button>
           <button className="role-btn" onClick={() => handleQuickLogin('teacher')} disabled={loading}>
-            👨‍🏫 Professor
+            👩‍🏫 Professor
           </button>
           <button className="role-btn" onClick={() => handleQuickLogin('admin')} disabled={loading}>
-            🛡️ Admin
+            ⚙️ Admin
           </button>
         </div>
 
@@ -105,12 +101,22 @@ const LoginNew = ({ onLoginSuccess }) => {
           </p>
         )}
 
+        {/* BOTÃO DE CADASTRO */}
+        <div className="register-link">
+          <p>Não tem conta?</p>
+          <button
+            className="register-btn"
+            onClick={() => onNavigate('register')}
+          >
+            📝 CRIAR CONTA GRÁTIS
+          </button>
+        </div>
+
         <div className="footer-text">
           <p>⚡ Desenvolvido por <strong>Educador Genézio de Lavor</strong></p>
           <p>React.js • Node.js • PostgreSQL • Express.js</p>
         </div>
       </div>
-
     </div>
   );
 };
