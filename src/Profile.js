@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 function Profile() {
   const user = (() => { try { return JSON.parse(localStorage.getItem("user")) || {}; } catch { return {}; } })();
   return (

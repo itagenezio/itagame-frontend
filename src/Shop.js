@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 function Shop() {
   return (
     <div style={{padding:"30px",maxWidth:"900px",margin:"0 auto"}}>

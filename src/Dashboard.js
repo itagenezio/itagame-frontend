@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 function Dashboard({ onNavigate }) {
   const user = (() => { try { return JSON.parse(localStorage.getItem("user")) || {}; } catch { return {}; } })();
   const cards = [
