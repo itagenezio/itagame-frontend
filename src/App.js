@@ -8,9 +8,11 @@ import Profile from './Profile';
 import Missions from './Missions';
 import Shop from './Shop';
 import './App.css';
+
 function App() {
   const [page, setPage] = useState('login');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -18,39 +20,72 @@ function App() {
       setPage('dashboard');
     }
   }, []);
+
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
     setPage('dashboard');
   };
+
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     setIsLoggedIn(false);
     setPage('login');
   };
+
   const handleNavigate = (newPage) => {
     setPage(newPage);
   };
+
   return (
     <div className="App">
+      {/* Menu antes de logar */}
+      {!isLoggedIn && (
+        <nav className="navbar">
+          <button
+            className={page === 'login' ? 'nav-button active' : 'nav-button'}
+            onClick={() => handleNavigate('login')}>
+            🔐 Login
+          </button>
+          <button
+            className={page === 'register' ? 'nav-button active' : 'nav-button'}
+            onClick={() => handleNavigate('register')}>
+            📝 Cadastrar
+          </button>
+        </nav>
+      )}
+
+      {/* Menu depois de logar */}
       {isLoggedIn && (
         <nav className="navbar">
-          <button className={page === 'dashboard' ? 'nav-button active' : 'nav-button'} onClick={() => handleNavigate('dashboard')}>
+          <button
+            className={page === 'dashboard' ? 'nav-button active' : 'nav-button'}
+            onClick={() => handleNavigate('dashboard')}>
             🏠 Dashboard
           </button>
-          <button className={page === 'courses' ? 'nav-button active' : 'nav-button'} onClick={() => handleNavigate('courses')}>
+          <button
+            className={page === 'courses' ? 'nav-button active' : 'nav-button'}
+            onClick={() => handleNavigate('courses')}>
             📚 Cursos
           </button>
-          <button className={page === 'missions' ? 'nav-button active' : 'nav-button'} onClick={() => handleNavigate('missions')}>
+          <button
+            className={page === 'missions' ? 'nav-button active' : 'nav-button'}
+            onClick={() => handleNavigate('missions')}>
             🎯 Missões
           </button>
-          <button className={page === 'shop' ? 'nav-button active' : 'nav-button'} onClick={() => handleNavigate('shop')}>
-            🛍️ Loja
+          <button
+            className={page === 'shop' ? 'nav-button active' : 'nav-button'}
+            onClick={() => handleNavigate('shop')}>
+            🛒 Loja
           </button>
-          <button className={page === 'ranking' ? 'nav-button active' : 'nav-button'} onClick={() => handleNavigate('ranking')}>
+          <button
+            className={page === 'ranking' ? 'nav-button active' : 'nav-button'}
+            onClick={() => handleNavigate('ranking')}>
             🏆 Ranking
           </button>
-          <button className={page === 'profile' ? 'nav-button active' : 'nav-button'} onClick={() => handleNavigate('profile')}>
+          <button
+            className={page === 'profile' ? 'nav-button active' : 'nav-button'}
+            onClick={() => handleNavigate('profile')}>
             👤 Perfil
           </button>
           <button className="logout-button" onClick={handleLogout}>
@@ -58,9 +93,17 @@ function App() {
           </button>
         </nav>
       )}
+
       <main className="main-content">
-       {page === 'login' && <LoginNew onLoginSuccess={handleLoginSuccess} />}
-        {page === 'register' && <Register />}
+        {page === 'login' && (
+          <LoginNew
+            onLoginSuccess={handleLoginSuccess}
+            onNavigate={handleNavigate}
+          />
+        )}
+        {page === 'register' && (
+          <Register onNavigate={handleNavigate} />
+        )}
         {page === 'dashboard' && <Dashboard onNavigate={handleNavigate} />}
         {page === 'courses' && <Courses />}
         {page === 'missions' && <Missions />}
@@ -71,4 +114,5 @@ function App() {
     </div>
   );
 }
+
 export default App;
