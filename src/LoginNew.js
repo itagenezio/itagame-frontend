@@ -46,7 +46,10 @@ const LoginNew = ({ onLoginSuccess, onNavigate }) => {
   };
 
   return (
-    <div className="login-page">
+ <div
+  className="login-page"
+  style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/login-bg.png)` }}
+>
       <div className="login-header">
         <span className="logo-icon">🎮</span>
         <h1 className="logo-text">ITAGAME</h1>
