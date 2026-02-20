@@ -1,91 +1,77 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-  min-height: 100vh;
-  font-family: 'Segoe UI', sans-serif;
-  color: white;
+:root {
+  --purple-dark: #2d1b4e;
+  --purple-darker: #1a1a2e;
+  --green-tech: #00d4aa;
+  --bg: #0f0f1a;
 }
-
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; }
 .App { min-height: 100vh; display: flex; flex-direction: column; }
 
-/* NAVBAR */
 .navbar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  flex-wrap: wrap;
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 24px;
+  background: var(--purple-dark);
+  border-bottom: 2px solid var(--green-tech);
+  flex-wrap: wrap; position: sticky; top: 0; z-index: 1000;
 }
+.navbar-brand { color: white; font-size: 20px; font-weight: bold; margin-right: auto; }
+.navbar-brand span { color: var(--green-tech); }
 
 .nav-button {
-  padding: 8px 16px;
-  background: rgba(255,255,255,0.08);
-  color: white;
-  border: 1px solid rgba(255,255,255,0.15);
+  padding: 8px 18px;
+  background: rgba(0,212,170,0.08);
+  color: #ccc;
+  border: 1px solid rgba(0,212,170,0.2);
   border-radius: 20px;
-  cursor: pointer;
-  font-size: 14px;
+  cursor: pointer; font-size: 14px;
   transition: all 0.2s;
 }
-
-.nav-button:hover {
-  background: rgba(168,85,247,0.4);
-  border-color: #a855f7;
-}
-
-.nav-button.active {
-  background: linear-gradient(135deg, #a855f7, #6366f1);
-  border-color: transparent;
-  font-weight: bold;
-}
-
+.nav-button:hover { background: rgba(0,212,170,0.2); color: var(--green-tech); border-color: var(--green-tech); }
+.nav-button.active { background: var(--green-tech); color: var(--bg); font-weight: bold; border-color: transparent; }
 .logout-button {
-  margin-left: auto;
-  padding: 8px 16px;
-  background: rgba(239,68,68,0.2);
-  color: #f87171;
-  border: 1px solid rgba(239,68,68,0.3);
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: all 0.2s;
+  margin-left: 8px; padding: 8px 18px;
+  background: rgba(239,68,68,0.15); color: #f87171;
+  border: 1px solid rgba(239,68,68,0.3); border-radius: 20px;
+  cursor: pointer; font-size: 14px; transition: all 0.2s;
 }
+.logout-button:hover { background: rgba(239,68,68,0.3); }
 
-.logout-button:hover {
-  background: rgba(239,68,68,0.4);
-}
+.main-content { flex: 1; padding: 30px 24px; max-width: 1100px; width: 100%; margin: 0 auto; }
 
-/* MAIN */
-.main-content {
-  flex: 1;
-  padding: 30px 20px;
-  max-width: 1100px;
-  width: 100%;
-  margin: 0 auto;
-}
-
-/* CARDS */
 .card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 16px;
-  padding: 24px;
+  background: var(--purple-darker);
+  border: 1px solid rgba(0,212,170,0.2);
+  border-radius: 16px; padding: 24px;
   transition: all 0.3s;
 }
+.card:hover { transform: translateY(-4px); border-color: var(--green-tech); box-shadow: 0 10px 30px rgba(0,212,170,0.1); }
 
-.card:hover {
-  background: rgba(168,85,247,0.1);
-  border-color: rgba(168,85,247,0.4);
-  transform: translateY(-3px);
+.stat-value { font-size: 32px; font-weight: bold; color: var(--green-tech); }
+.stat-label { color: #94a3b8; font-size: 14px; margin-top: 4px; }
+
+.progress-bar { background: rgba(255,255,255,0.1); height: 10px; border-radius: 5px; overflow: hidden; margin-top: 8px; }
+.progress-fill { background: linear-gradient(90deg, var(--green-tech), #4c2882); height: 100%; border-radius: 5px; transition: width 0.5s; }
+
+.badge {
+  display: inline-block; padding: 4px 12px;
+  border-radius: 999px; font-size: 12px; font-weight: 600;
+}
+.badge-gold { background: rgba(251,191,36,0.2); color: #fbbf24; border: 1px solid #fbbf24; }
+.badge-silver { background: rgba(148,163,184,0.2); color: #94a3b8; border: 1px solid #94a3b8; }
+.badge-bronze { background: rgba(180,83,9,0.2); color: #f97316; border: 1px solid #f97316; }
+.badge-green { background: rgba(0,212,170,0.2); color: var(--green-tech); border: 1px solid var(--green-tech); }
+
+.btn-green {
+  padding: 10px 20px; background: var(--green-tech); color: var(--bg);
+  border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.2s;
+}
+.btn-green:hover { background: #00b894; transform: translateY(-1px); }
+.btn-disabled {
+  padding: 10px 20px; background: rgba(255,255,255,0.05); color: #555;
+  border: 1px solid #333; border-radius: 8px; cursor: not-allowed; font-weight: bold;
 }
 
-h1, h2, h3 {
-  background: linear-gradient(135deg, #a855f7, #6366f1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 16px;
-}
+h1, h2, h3 { color: white; }
+.text-green { color: var(--green-tech); }
+.text-muted { color: #94a3b8; }
