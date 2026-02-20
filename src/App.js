@@ -52,14 +52,9 @@ function App() {
       )}
 
       <main className="main-content">
-        {page === 'login' && (
-          <LoginNew
-            onLoginSuccess={handleLoginSuccess}
-            onNavigate={handleNavigate}
-          />
+       {page === 'login' && <LoginNew onLoginSuccess={handleLoginSuccess} onNavigate={handleNavigate} />}
         )}
-        {page === 'register' && (
-          <Register onNavigate={handleNavigate} />
+        {page === 'register' && <Register onNavigate={handleNavigate} />}
         )}
         {page === 'dashboard' && <Dashboard onNavigate={handleNavigate} />}
         {page === 'courses' && <Courses />}
