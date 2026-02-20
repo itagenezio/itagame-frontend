@@ -39,58 +39,15 @@ function App() {
 
   return (
     <div className="App">
-      {/* Menu antes de logar */}
-      {!isLoggedIn && (
-        <nav className="navbar">
-          <button
-            className={page === 'login' ? 'nav-button active' : 'nav-button'}
-            onClick={() => handleNavigate('login')}>
-            🔐 Login
-          </button>
-          <button
-            className={page === 'register' ? 'nav-button active' : 'nav-button'}
-            onClick={() => handleNavigate('register')}>
-            📝 Cadastrar
-          </button>
-        </nav>
-      )}
-
-      {/* Menu depois de logar */}
       {isLoggedIn && (
         <nav className="navbar">
-          <button
-            className={page === 'dashboard' ? 'nav-button active' : 'nav-button'}
-            onClick={() => handleNavigate('dashboard')}>
-            🏠 Dashboard
-          </button>
-          <button
-            className={page === 'courses' ? 'nav-button active' : 'nav-button'}
-            onClick={() => handleNavigate('courses')}>
-            📚 Cursos
-          </button>
-          <button
-            className={page === 'missions' ? 'nav-button active' : 'nav-button'}
-            onClick={() => handleNavigate('missions')}>
-            🎯 Missões
-          </button>
-          <button
-            className={page === 'shop' ? 'nav-button active' : 'nav-button'}
-            onClick={() => handleNavigate('shop')}>
-            🛒 Loja
-          </button>
-          <button
-            className={page === 'ranking' ? 'nav-button active' : 'nav-button'}
-            onClick={() => handleNavigate('ranking')}>
-            🏆 Ranking
-          </button>
-          <button
-            className={page === 'profile' ? 'nav-button active' : 'nav-button'}
-            onClick={() => handleNavigate('profile')}>
-            👤 Perfil
-          </button>
-          <button className="logout-button" onClick={handleLogout}>
-            🚪 Sair
-          </button>
+          <button className={page === 'dashboard' ? 'nav-button active' : 'nav-button'} onClick={() => handleNavigate('dashboard')}>🏠 Dashboard</button>
+          <button className={page === 'courses' ? 'nav-button active' : 'nav-button'} onClick={() => handleNavigate('courses')}>📚 Cursos</button>
+          <button className={page === 'missions' ? 'nav-button active' : 'nav-button'} onClick={() => handleNavigate('missions')}>🎯 Missões</button>
+          <button className={page === 'shop' ? 'nav-button active' : 'nav-button'} onClick={() => handleNavigate('shop')}>🛒 Loja</button>
+          <button className={page === 'ranking' ? 'nav-button active' : 'nav-button'} onClick={() => handleNavigate('ranking')}>🏆 Ranking</button>
+          <button className={page === 'profile' ? 'nav-button active' : 'nav-button'} onClick={() => handleNavigate('profile')}>👤 Perfil</button>
+          <button className="logout-button" onClick={handleLogout}>🚪 Sair</button>
         </nav>
       )}
 
